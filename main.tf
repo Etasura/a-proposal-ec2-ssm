@@ -86,7 +86,7 @@ resource "aws_security_group" "web_sg" {
   vpc_id      = data.aws_vpc.default.id
 
   ingress {
-    description = "HTTP"
+    description = "Allow HTTP 80 from internet (demo)"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
@@ -94,6 +94,7 @@ resource "aws_security_group" "web_sg" {
   }
 
   egress {
+    description = "Allow all egress for package updates/IMDS/SSM"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
@@ -116,12 +117,18 @@ resource "aws_instance" "web" {
     cpu_credits = "standard"
   }
 
+  metadata_options {
+    http_endpoint = "enabled"
+    http_tokens   = "required"
+  }
+
   user_data = file("${path.module}/user_data.sh")
 
   root_block_device {
     volume_size           = var.root_volume_size_gb
     volume_type           = "gp3"
     delete_on_termination = true
+    encrypted             = true
     tags                  = local.tags
   }
 
