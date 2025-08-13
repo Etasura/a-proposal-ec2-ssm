@@ -1,0 +1,4 @@
+
+exclude:
+  - aws-ec2-no-public-ingress-sgr   # デモのため80/TCP公開（実務ではALB/WAF/特定CIDRに）
+  - aws-ec2-no-public-egress-sgr    # 最小構成のため一時的に全送信許可（OS更新/SSM接続）
