@@ -1,3 +1,4 @@
+
 name: CI
 on:
   push:
@@ -26,4 +27,4 @@ jobs:
         uses: aquasecurity/tfsec-action@v1.0.3
         with:
           working_directory: .
-          additional_args: --config-file .tfsec.yaml
+          additional_args: --config-file .tfsec.yml
