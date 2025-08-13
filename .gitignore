@@ -1,0 +1,19 @@
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+# Lock file は追跡する（依存固定）
+!.terraform.lock.hcl
+
+# OS junk
+.DS_Store
+Thumbs.db
